@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class DynamicArray
 {
     field int size, capacity;
@@ -130,4 +131,138 @@ class DynamicArray
         
         return;
     }
+=======
+class DynamicArray
+{
+    field int size, capacity;
+    field Array arr;
+
+    constructor DynamicArray new ()
+    {
+        let capacity = 1;
+        let size = 0;
+        let arr = Array.new(capacity);
+
+        return this;
+    }
+
+    method void push_back (int value)
+    {
+        var Array temp;
+        var int i;
+
+        let arr[size] = value;
+        let size = size + 1;
+
+        if (size = capacity)
+        {
+            let temp = Array.new(capacity);
+
+            let i = 0;
+            while (i < size)
+            {
+                let temp[i] = arr[i];
+                let i = i + 1; 
+            }
+
+            do arr.dispose();
+            let capacity = capacity * 2;
+            let arr = Array.new(capacity);
+
+            let i = 0;
+            while (i < size)
+            {
+                let arr[i] = temp[i];
+                let i = i + 1; 
+            }
+
+            do temp.dispose();
+        }
+
+        return;
+    }
+
+    method void set (int k, int v)
+    {
+        let arr[k] = v;
+
+        return;
+    }
+
+    method int get (int k)
+    {
+        return arr[k];
+    }
+
+    method void resize (int newSize)
+    {
+        var int i;
+        var Array temp;
+
+        if (newSize > size)
+        {
+            let temp = Array.new(size);
+
+            let i = 0;
+            while (i < size)
+            {
+                let temp[i] = arr[i];
+                let i = i + 1; 
+            }
+
+            do arr.dispose();
+            let capacity = newSize * 2;
+            let arr = Array.new(capacity);
+
+            let i = 0;
+            while (i < size)
+            {
+                let arr[i] = temp[i];
+                let i = i + 1; 
+            }
+            
+            let i = size;
+            while (i < newSize)
+            {
+                let arr[i] = 0;
+                let i = i + 1; 
+            }
+
+            let size = newSize;       
+
+            do temp.dispose();
+        }
+        else 
+        {
+            if (newSize < size)
+            {
+                let temp = Array.new(capacity);
+
+                let i = 0;
+                while (i < newSize)
+                {
+                    let temp[i] = arr[i];
+                    let i = i + 1; 
+                }
+
+                do arr.dispose();
+                let capacity = newSize * 2;
+                let arr = Array.new(capacity);
+
+                let i = 0;
+                while (i < newSize)
+                {
+                    let arr[i] = temp[i];
+                    let i = i + 1; 
+                }
+
+                let size = newSize;
+
+                do temp.dispose();
+            }
+        }
+        
+        return;
+    }
+>>>>>>> 3b10b4785a182341bf86ab169a1ba660ad368b1d
 }
