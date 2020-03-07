@@ -2,6 +2,29 @@ class Main
 {
     function void main ()
     {
+        var int i;
+        var Stack s;
+        let s = Stack.new(5);
+
+        do s.push(1);
+        do s.push(2);
+        do s.push(3);
+        do s.push(4);
+        do s.push(5);
+
+        do s.pop();
+
+        do s.push(6);
+
+        let i = 0;
+        while (i < 5)
+        {
+            do Output.printInt(s.peek());
+            do s.pop();
+
+            let i = i + 1;
+        }
+
         return;
     }
 }

@@ -1,4 +1,58 @@
 class Stack 
 {
-    
+    field int capacity, top;
+    field Array arr;
+
+    constructor Stack new (int cap)
+    {
+        let capacity = cap;
+        let arr = Array.new(capacity);
+        let top = 0;
+
+        return this;
+    }
+
+    method void push (int value)
+    {
+        if (top = capacity)
+        {
+            do Output.printString("Stack is full!");
+            return;
+        }
+
+        let arr[top] = value;
+        let top = top + 1;
+
+        return; 
+    }
+
+    method void pop ()
+    {
+        if (top < 0)
+        {
+            do Output.printString("Stack is empty!");
+            return;
+        }
+
+        let arr[top] = 0;
+        let top = top - 1;
+
+        return;
+    }
+
+    method int peek ()
+    {
+        if (top = 0)
+        {
+            do Output.printString("Stack is empty!");
+            return -1;
+        }
+
+        return arr[top - 1];
+    }
+
+    method int size ()
+    {
+        return top + 1;
+    }
 }
