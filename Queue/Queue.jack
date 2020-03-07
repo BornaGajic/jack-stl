@@ -1,0 +1,58 @@
+class Queue
+{
+    field Array arr;
+    field int capacity, size, front, top;
+
+    constructor Queue new (int cap)
+    {
+        let size = 0;
+        let front = 0;
+        let top = 0;
+        let capacity = cap;
+        let arr = Array.new(cap);
+
+        return this;
+    } 
+
+    method void enqueue (int value)
+    {
+        if (size < capacity)
+        {
+            let arr[top - ((top/capacity) * capacity)] = value;
+            let size = size + 1;
+            let top = top + 1;
+        }
+        else
+        {
+            do Output.printString("Queue is full!");
+        }
+
+        return;
+    }
+
+    method void dequeue ()
+    {
+        if (size > 0)
+        {
+            let arr[front - ((front/capacity) * capacity)] = 0;
+            let size = size - 1;
+            let front = front + 1;
+        }
+        else
+        {
+            do Output.printString("Queue is empty!");
+        }
+
+        return;
+    }
+
+    method int peek ()
+    {
+        return arr[front - ((front/capacity) * capacity)];
+    }
+
+    method int size ()
+    {
+        return size;
+    }
+}
