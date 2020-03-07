@@ -25,6 +25,8 @@ class Main
             let i = i + 1;
         }
 
+        do s.dispose();
+
         return;
     }
 }

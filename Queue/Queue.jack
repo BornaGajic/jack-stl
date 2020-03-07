@@ -48,11 +48,23 @@ class Queue
 
     method int peek ()
     {
+        if (size = 0)
+        {
+            do Output.printString("Queue is empty!");
+            return -1;
+        }
+        
         return arr[front - ((front/capacity) * capacity)];
     }
 
-    method int size ()
+    method int Size ()
     {
         return size;
+    }
+
+    method void dispose ()
+    {
+        do Memory.deAlloc(this);
+        return;
     }
 }

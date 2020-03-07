@@ -24,7 +24,7 @@ class Main
             let i = i + 1;
         }
         
-        do Output.printInt(q.size());
+        do q.dispose();
 
         return;
     }
