@@ -260,7 +260,5 @@ class BST
         }
 
         return;
-    }
-
-    
+    }   
 }
