@@ -1,0 +1,90 @@
+class Node
+{
+    field Node left, right, parent;
+    field int value;
+    field bool hasLeft, hasRight;
+
+    constructor Node new (int val)
+    {
+        let value = val;
+
+        let hasLeft = false;
+        let hasRight = false;
+
+        return this;
+    }
+
+    method bool has_left ()
+    {
+        return hasLeft;
+    }
+
+    method bool has_right ()
+    {
+        return hasRight;
+    }
+
+    method void set_has_left (bool b)
+    {
+        let hasLeft = b;
+        return;
+    }
+
+    method void set_has_right (bool b)
+    {
+        let hasRight = b;
+        return;
+    }
+
+    method Node leftChild ()
+    {
+        return left;
+    }
+
+    method Node rightChild ()
+    {
+        return right;
+    }
+
+    method Node overseer ()
+    {
+        return parent;
+    }
+
+    method void setLeft (Node lt)
+    {
+        let left = lt;
+        return;
+    }
+
+    method void setRight (Node rt)
+    {
+        let right = rt;
+        return;
+    }
+
+    method void setParent (Node pt)
+    {
+        let parent = pt;
+        return;
+    }
+
+    method int getValue ()
+    {
+        return value;
+    }
+
+    method void setValue (int v)
+    {
+        let value = v;
+        return;
+    }
+
+    method void dispose ()
+    {
+        let hasLeft = false;
+        let hasRight = false;    
+        do Memory.deAlloc(this);
+        return;
+    }
+}

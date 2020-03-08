@@ -1,0 +1,39 @@
+class Main
+{
+    function void main ()
+    {
+        var Node root, a;
+        var BST tree;
+        let root = Node.new(6);
+        let tree = BST.new(root);
+
+        do tree.insert(3);
+        do tree.insert(8);
+        do tree.insert(4);
+        do tree.insert(7);
+
+        do BST.inorder_print(root);
+
+        do Output.println();
+
+        do tree.delete(3);
+        do BST.inorder_print(root);
+        do Output.println();
+
+        do tree.delete(8);
+        do BST.inorder_print(root);
+                do Output.println();
+
+        do tree.delete(6);
+        do BST.inorder_print(root);
+                do Output.println();
+
+        do tree.delete(4);
+        do BST.inorder_print(root);
+
+        do tree.disposeTree(root);
+        do tree.dispose();
+        do root.dispose();
+        return;
+    }
+}
