@@ -125,6 +125,11 @@ add
 pop pointer 1
 push that 0
 return
+function DynamicArray.Size 0
+push argument 0
+pop pointer 0
+push this 0
+return
 function DynamicArray.resize 2
 push argument 0
 pop pointer 0
@@ -306,5 +311,13 @@ call Array.dispose 1
 pop temp 0
 label IF_FALSE1
 label IF_END0
+push constant 0
+return
+function DynamicArray.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
 push constant 0
 return

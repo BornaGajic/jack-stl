@@ -1,0 +1,264 @@
+class BST
+{
+    field Node root;
+
+    constructor BST new (Node rootNode)
+    {
+        let root = rootNode;
+        return this;
+    }
+
+    method void insert (int value)
+    {
+        var Node newNode, iter;
+
+        let newNode = Node.new(value);
+        let iter = root;
+
+        while(true)
+        {
+            if (value < iter.getValue())
+            {
+                if (iter.has_left() = true)
+                {
+                    let iter = iter.leftChild();
+                }
+                else
+                {
+                    do iter.setLeft(newNode);
+                    do newNode.setParent(iter);
+                    do iter.set_has_left(true);
+
+                    return;
+                }
+            }
+            else
+            {
+                if (iter.has_right() = true)
+                {
+                    let iter = iter.rightChild();
+                }
+                else
+                {
+                    do iter.setRight(newNode);
+                    do newNode.setParent(iter);
+                    do iter.set_has_right(true);
+
+                    return;
+                }
+            }
+        }
+        return;
+    }
+
+    method Node search (int value)
+    {
+        var Node iter;
+        var Node empty;
+
+        let iter = root;
+
+        while(true)
+        {
+            if (value < iter.getValue())
+            {
+                if (iter.has_left() = true)
+                {
+                    let iter = iter.leftChild();
+                }
+                else
+                {
+                    do Output.printString("Node doesn't exist");
+                    return empty; 
+                }
+            }
+            else
+            {
+                if (iter.getValue() = value)
+                {
+                    return iter;
+                }
+                else
+                {
+                    if (iter.has_right() = true)
+                    {
+                        let iter = iter.rightChild();
+                    }
+                    else
+                    {
+                        do Output.printString("Node doesn't exist");
+                        return empty; 
+                    }
+                }
+            }
+        }
+
+        do Output.printString("Node doesn't exist");
+        return empty;   
+    }
+
+    method void delete (int value)
+    {
+        var Node nodeToDelete, iter, tempNode, parentNodeTemp, rightNodeTemp, leftNodeTemp;
+        var int temp;
+        let nodeToDelete = search(value);
+
+        if ((nodeToDelete.has_left() = false) & (nodeToDelete.has_right() = false))
+        {
+            if (nodeToDelete = root)
+            {
+                do nodeToDelete.dispose();
+                return;
+            }
+
+            let parentNodeTemp = nodeToDelete.overseer();
+            if (parentNodeTemp.rightChild() = nodeToDelete)
+            {
+                do parentNodeTemp.set_has_right(false);
+            }
+            else 
+            {
+                do parentNodeTemp.set_has_left(false);
+            }
+
+            do nodeToDelete.dispose();
+            return;
+        }
+        else
+        {
+            let iter = nodeToDelete;
+
+            if (iter.has_right() = true)
+            {
+                let iter = iter.rightChild();
+
+                while (iter.has_left() = true)
+                {
+                    let iter = iter.leftChild();
+                }
+
+                let temp = nodeToDelete.getValue();
+                do nodeToDelete.setValue(iter.getValue());
+                do iter.setValue(temp);
+
+                let tempNode = nodeToDelete;
+                let nodeToDelete = iter;
+                let iter = tempNode; 
+
+                if (nodeToDelete.has_right() = true)
+                {
+                    let parentNodeTemp = nodeToDelete.overseer();
+                    let rightNodeTemp = nodeToDelete.rightChild();
+
+                    do parentNodeTemp.setLeft(nodeToDelete.rightChild());
+                    do rightNodeTemp.setParent(parentNodeTemp);
+
+                    do nodeToDelete.dispose();
+
+                    return;
+                }
+                else
+                {
+                    let parentNodeTemp = nodeToDelete.overseer();
+                    if (parentNodeTemp.rightChild() = nodeToDelete)
+                    {
+                        do parentNodeTemp.set_has_right(false);
+                    }
+                    else 
+                    {
+                        do parentNodeTemp.set_has_left(false);
+                    }
+
+                    do nodeToDelete.dispose();
+                    return;
+                }
+            }
+            else
+            {
+                if (nodeToDelete = root)
+                {
+                    let root = nodeToDelete.leftChild();
+                    do nodeToDelete.dispose();
+                    return;
+                }
+
+                let parentNodeTemp = nodeToDelete.overseer();
+                let leftNodeTemp = nodeToDelete.leftChild();
+
+                if (parentNodeTemp.rightChild() = nodeToDelete)
+                {
+                    do parentNodeTemp.setRight(leftNodeTemp);
+                }
+                else
+                {
+                    do parentNodeTemp.setLeft(leftNodeTemp);
+                }
+
+                do leftNodeTemp.setParent(parentNodeTemp);
+
+                do nodeToDelete.dispose();
+                return;
+            }
+        }
+    }
+
+    method void dispose ()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void disposeTree(Node node)
+    {
+        if ((node.has_left() = false) & (node.has_right() = false))
+        {
+            do Output.println();
+            do Output.printString("node deleted");
+            do Output.println();
+            do node.dispose();
+            return;
+        }
+
+        if (node.has_left() = true)
+        {
+            do disposeTree(node.leftChild());
+        }
+
+        if (node.has_right() = true)
+        {
+            do disposeTree(node.rightChild());
+        }
+
+        do Output.printString("node deleted");
+        do Output.println();
+        do node.dispose();
+
+        return; 
+    }
+
+
+    function void inorder_print (Node node)
+    {
+        if ((node.has_left() = false) & (node.has_right() = false))
+        {
+            do Output.printInt(node.getValue());
+            do Output.printString(" ");
+            return;
+        }
+
+        if (node.has_left() = true)
+        {
+            do BST.inorder_print(node.leftChild());
+        }
+
+        do Output.printInt(node.getValue());
+        do Output.printString(" ");
+
+        if (node.has_right() = true)
+        {
+            do BST.inorder_print(node.rightChild());
+        }
+
+        return;
+    }   
+}

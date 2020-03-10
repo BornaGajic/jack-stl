@@ -1,25 +1,25 @@
 Implementation of well known data structures (reference: STL)
 -------------------------------------------------------------
-- **DynamicArray** => LIFO structure. Methods: *resize*, *get*, *set* and *pushBack*.
+- **DynamicArray** &#8594; LIFO structure. Methods: *resize*, *get*, *set* and *pushBack*.
 
-- **Stack** => LIFO structure. Methods: *push*, *pop* and *peek*.
+- **Stack** &#8594; LIFO structure. Methods: *push*, *pop* and *peek*.
 
-- **Queue** => FIFO structure. Methods: *enqueue*, *dequeue* and *peek*.
+- **Queue** &#8594; FIFO structure. Methods: *enqueue*, *dequeue* and *peek*.
 
-- **BST** => binary search tree. Methods: *insert*, *delete* and *search*.
+- **BST** &#8594; binary search tree. Methods: *insert*, *delete* and *search*.
 
-- **PQueue** => max priority queue. Methods: *enqueue*, *dequeue* and *peek*.
+- **PQueue** &#8594; max priority queue. Methods: *enqueue*, *dequeue* and *peek*.
 
-- **Set** => set (mathematics). Methods: *insert*, *delete* and *exists*.
+- **Set** &#8594; set (mathematics). Methods: *insert*, *delete* and *exists*.
 
-- **List** => doubly linked list. Methods: *insertFront*, *insertBack*, *getHead* and *getTail*.
+- **List** &#8594; doubly linked list. Methods: *insertFront*, *insertBack*, *getHead* and *getTail*.
 
 **Note:** all classes above have method named *size* which returns number of elements. 
 
-- **Vector** => vector (mathematics). Methods: *vecProduct*, *scalarProduct*, *add*, *sub* and *norm*.
+- **Vector** &#8594; vector (mathematics). Methods: *vecProduct*, *scalarProduct*, *add*, *sub* and *norm*.
 
-- **Matrix** => matrix (mathematics). Methods: *add*, *sub*, *trace*, *prodMat*, *determinant*, *prodVec* and *transponse*.
+- **Matrix** &#8594; matrix (mathematics). Methods: *add*, *sub*, *trace*, *prodMat*, *determinant*, *prodVec* and *transponse*.
 
 **Note:** *prodMat* method calculates product of two matrices, while *prodVec* returns product of a vector and matrix.
 
-- **Hashtable** => associative array. Methods: *get* and *set*.
+- **Hashtable** &#8594; associative array. Methods: *get* and *set*.

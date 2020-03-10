@@ -60,6 +60,11 @@ class DynamicArray
         return arr[k];
     }
 
+    method int Size ()
+    {
+        return size;
+    }
+
     method void resize (int newSize)
     {
         var int i;
@@ -128,6 +133,12 @@ class DynamicArray
             }
         }
         
+        return;
+    }
+
+    method void dispose ()
+    {
+        do Memory.deAlloc(this);
         return;
     }
 }

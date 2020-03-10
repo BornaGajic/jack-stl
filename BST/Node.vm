@@ -1,0 +1,96 @@
+function Node.new 0
+push constant 6
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 3
+push constant 0
+pop this 4
+push constant 0
+pop this 5
+push pointer 0
+return
+function Node.has_left 0
+push argument 0
+pop pointer 0
+push this 4
+return
+function Node.has_right 0
+push argument 0
+pop pointer 0
+push this 5
+return
+function Node.set_has_left 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 4
+push constant 0
+return
+function Node.set_has_right 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 5
+push constant 0
+return
+function Node.leftChild 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Node.rightChild 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Node.overseer 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function Node.setLeft 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push constant 0
+return
+function Node.setRight 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 1
+push constant 0
+return
+function Node.setParent 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 2
+push constant 0
+return
+function Node.getValue 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function Node.setValue 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 3
+push constant 0
+return
+function Node.dispose 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 4
+push constant 0
+pop this 5
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
