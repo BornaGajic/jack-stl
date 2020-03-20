@@ -1,0 +1,77 @@
+class List
+{
+    field int head, tail, size;
+
+    constructor List new ()
+    {
+        let size = 0;
+        return this;
+    }
+
+    method void push_back (int element)
+    {
+        var Node newNode, temp;
+        let newNode = Node.new(element);
+
+        if (size = 0)
+        {
+            let head = newNode;
+            let head.next = newNode;
+            let head.prev = newNode;
+            let tail = newNode;
+            let tail.next = newNode;
+            let tail.prev = newNode
+        }
+        else
+        {
+            let head.prev = newNode;
+            let temp = head;
+            let head = newNode;
+            let head.next = temp;
+            let head.prev = tail;
+            let tail.next = head;
+        }
+
+        let size = size + 1;
+
+        return;
+    }
+
+    method void push_front (int element)
+    {
+        var Node newNode, temp;
+        let newNode = Node.new(element);
+
+        if (size = 0)
+        {
+            let head = newNode;
+            let head.next = newNode;
+            let head.prev = newNode;
+            let tail = newNode;
+            let tail.next = newNode;
+            let tail.prev = newNode
+        }
+        else
+        {
+            let tail.next = newNode;
+            let temp = tail;
+            let tail = newNode;
+            let tail.next = head;
+            let tail.prev = temp;     
+        }
+
+        return;
+    }
+
+    method void print ()
+    {
+        var Node iter = head;
+
+        while (iter != tail)
+        {
+            do Output.printInt(iter.)
+        }
+
+        return;
+    }
+}

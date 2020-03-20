@@ -138,6 +138,7 @@ class DynamicArray
 
     method void dispose ()
     {
+        do arr.dispose();
         do Memory.deAlloc(this);
         return;
     }

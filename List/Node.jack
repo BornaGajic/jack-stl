@@ -1,0 +1,19 @@
+class Node
+{
+    field int element;
+    field Node next, prev;
+
+    constructor Node new (int elem)
+    {
+        let element = elem;
+        return this;
+    }
+
+    
+
+    method void dispose ()
+    {
+        Memory.deAlloc(this);
+        return;
+    }
+}
