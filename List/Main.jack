@@ -1,0 +1,19 @@
+class Main
+{
+    function void main ()
+    {
+        var List lista;
+        let lista = List.new();
+
+        do lista.push_back(1);
+        do lista.push_front(2);
+        do lista.push_back(3);
+        do lista.push_front(4);
+        do lista.push_front(5);
+
+        do lista.print();
+
+        do lista.dispose();
+        return;
+    }
+}

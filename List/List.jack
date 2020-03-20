@@ -1,6 +1,7 @@
 class List
 {
-    field int head, tail, size;
+    field Node head, tail;
+    field int size;
 
     constructor List new ()
     {
@@ -16,20 +17,21 @@ class List
         if (size = 0)
         {
             let head = newNode;
-            let head.next = newNode;
-            let head.prev = newNode;
+            do head.set_next(newNode);
+            do head.set_prev(newNode);
+
             let tail = newNode;
-            let tail.next = newNode;
-            let tail.prev = newNode
+            do tail.set_next(newNode);
+            do tail.set_prev(newNode);
         }
         else
         {
-            let head.prev = newNode;
+            do head.set_prev(newNode);
             let temp = head;
             let head = newNode;
-            let head.next = temp;
-            let head.prev = tail;
-            let tail.next = head;
+            do head.set_next(temp);
+            do head.set_prev(tail);
+            do tail.set_next(head);
         }
 
         let size = size + 1;
@@ -45,32 +47,77 @@ class List
         if (size = 0)
         {
             let head = newNode;
-            let head.next = newNode;
-            let head.prev = newNode;
+            do head.set_next(newNode);
+            do head.set_prev(newNode);
+
             let tail = newNode;
-            let tail.next = newNode;
-            let tail.prev = newNode
+            do tail.set_next(newNode);
+            do tail.set_prev(newNode);
         }
         else
         {
-            let tail.next = newNode;
+            do tail.set_next(newNode);
             let temp = tail;
             let tail = newNode;
-            let tail.next = head;
-            let tail.prev = temp;     
+            do tail.set_next(head);
+            do tail.set_prev(temp);     
         }
+
+        let size = size + 1;
 
         return;
     }
 
+    method int get_tail ()
+    {
+        return tail.get_element();
+    }
+    
+    method int get_head ()
+    {
+        return head.get_element();
+    }
+
+    method int get_size ()
+    {
+        return size;
+    }
+
     method void print ()
     {
-        var Node iter = head;
+        var Node iter;
+        let iter = head;
 
-        while (iter != tail)
+        while (~(iter = tail))
         {
-            do Output.printInt(iter.)
+            do Output.printInt(iter.get_element());
+            do Output.printString(" ");
+            let iter = iter.get_next();
         }
+
+        do Output.printInt(iter.get_element());
+
+        return;
+    }
+
+    method void dispose ()
+    {
+        var Node iter, last;
+
+        let iter = head.get_next();
+        let last = head;
+
+        while (~(iter = tail))
+        {
+            do last.dispose();
+            let last = iter;
+            let iter = iter.get_next();
+        }
+
+        do last.dispose();
+        do iter.dispose();
+
+        do Memory.deAlloc(this);
 
         return;
     }
