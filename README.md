@@ -14,7 +14,7 @@ Implementation of well known data structures (reference: STL)
 
 - **List** &#8594; doubly linked list. Methods: *insertFront*, *insertBack*, *getHead* and *getTail*.
 
-**Note:** all classes above have a method named *size* which returns number of elements. 
+**Note:** all classes above have a method named *size* which returns number of elements and *clear*. 
 
 - **Vector** &#8594; vector (mathematics). Methods: *vecProduct*, *scalarProduct*, *add*, *sub* and *norm*.
 
