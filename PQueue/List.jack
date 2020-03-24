@@ -68,6 +68,29 @@ class List
         return;
     }
 
+    method void pop_head ()
+    {
+        var Node temp;
+
+        if (size = 1)
+        {
+            do head.dispose();
+            let size = size - 1;
+            
+            return;
+        }
+
+        do tail.set_next(head.get_next());
+        let temp = head.get_next();
+        do temp.set_prev(tail);
+        do head.dispose();
+        let head = temp;
+
+        let size = size - 1;
+
+        return;
+    }
+
     // inserts element after x
     method void insert (int element, int x)
     {
@@ -107,6 +130,16 @@ class List
         return head.get_element();
     }
 
+    method Node back ()
+    {
+        return head;
+    }
+
+    method Node front ()
+    {
+        return tail;
+    }
+
     method int get_size ()
     {
         return size;
@@ -131,42 +164,6 @@ class List
         }
 
         do Output.printInt(iter.get_element());
-
-        return;
-    }
-
-    method void pop_head ()
-    {
-        var Node temp;
-
-        if (size = 1)
-        {
-            do head.dispose();
-            let size = size - 1;
-
-            return;
-        }
-
-        do tail.set_next(head.get_next());
-        let temp = head.get_next();
-        do temp.set_prev(tail);
-        do head.dispose();
-        let head = temp;
-
-        let size = size - 1;
-
-        return;
-    }
-
-    method void clear ()
-    {
-        var int i;
-
-        let i = 0;
-        while (~(i = size))
-        {
-            do pop_head();
-        }
 
         return;
     }

@@ -1,0 +1,31 @@
+class Main
+{
+    function void main ()
+    {
+        var PQueue pq;
+        let pq = PQueue.new();
+
+        do pq.enqueue(1);
+        do pq.enqueue(2);
+        
+        do pq.enqueue(3);
+        do pq.enqueue(4);
+        
+        do pq.enqueue(-1);
+
+        do pq.enqueue(10);
+
+        do pq.print();
+        do Output.println();
+
+        do pq.dequeue();
+
+        do pq.clear();
+
+        do pq.print();
+
+        do pq.dispose();
+
+        return;
+    }
+}

@@ -1,0 +1,90 @@
+class PQueue
+{
+    field List A;
+    constructor PQueue new ()
+    {
+        let A = List.new();
+
+        return this;
+    } 
+
+    method void enqueue (int element)
+    {
+        var int i;
+        var Node iter;
+
+        if (A.get_size() = 0)
+        {
+            do A.push_back(element);
+            return;
+        }
+
+        let i = 0;
+        let iter = A.back();
+        while (i < A.get_size())
+        {
+            if (iter.get_element() < element)
+            {
+                if (i = 0)
+                {
+                    do A.push_back(element);
+
+                    return;
+                }
+                else
+                {
+                    do A.insert(element, i - 1);
+
+                    return;
+                }
+            }
+
+            let i = i + 1;
+            let iter = iter.get_next();
+        }
+
+        do A.push_front(element);
+
+        return;
+    }
+
+    method void dequeue ()
+    {
+        do A.pop_head();
+        
+        return;
+    }
+
+    method void dispose ()
+    {
+        do A.dispose();
+        do Memory.deAlloc(this);
+
+        return;
+    }
+
+    method void clear ()
+    {
+        var int i;
+
+        let i = 0;
+        while (~(i = A.get_size()))
+        {
+            do dequeue();
+        }
+
+        return;
+    }
+
+    method int get_size ()
+    {
+        return A.get_size();
+    }
+
+    method void print ()
+    {
+        do A.print();
+
+        return;
+    }
+}

@@ -10,6 +10,11 @@ class Main
         do lista.push_back(3);
         do lista.push_front(4);
         do lista.push_front(5);
+        do lista.insert(6, 2);
+
+        do lista.print();
+
+        do lista.clear();
 
         do lista.print();
 

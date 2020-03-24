@@ -1,0 +1,137 @@
+function PQueue.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+call List.new 0
+pop this 0
+push pointer 0
+return
+function PQueue.enqueue 2
+push argument 0
+pop pointer 0
+push this 0
+call List.get_size 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push argument 1
+call List.push_back 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push constant 0
+pop local 0
+push this 0
+call List.back 1
+pop local 1
+label WHILE_EXP0
+push local 0
+push this 0
+call List.get_size 1
+lt
+not
+if-goto WHILE_END0
+push local 1
+call Node.get_element 1
+push argument 1
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push constant 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 0
+push argument 1
+call List.push_back 2
+pop temp 0
+push constant 0
+return
+goto IF_END2
+label IF_FALSE2
+push this 0
+push argument 1
+push local 0
+push constant 1
+sub
+call List.insert 3
+pop temp 0
+push constant 0
+return
+label IF_END2
+label IF_FALSE1
+push local 0
+push constant 1
+add
+pop local 0
+push local 1
+call Node.get_next 1
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push this 0
+push argument 1
+call List.push_front 2
+pop temp 0
+push constant 0
+return
+function PQueue.dequeue 0
+push argument 0
+pop pointer 0
+push this 0
+call List.pop_head 1
+pop temp 0
+push constant 0
+return
+function PQueue.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call List.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function PQueue.clear 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 0
+call List.get_size 1
+eq
+not
+not
+if-goto WHILE_END0
+push pointer 0
+call PQueue.dequeue 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function PQueue.get_size 0
+push argument 0
+pop pointer 0
+push this 0
+call List.get_size 1
+return
+function PQueue.print 0
+push argument 0
+pop pointer 0
+push this 0
+call List.print 1
+pop temp 0
+push constant 0
+return
