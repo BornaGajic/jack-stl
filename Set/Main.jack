@@ -1,0 +1,23 @@
+class Main
+{
+    function void main ()
+    {
+        var Set X;
+        let X = Set.new();
+
+        do X.insert(1);
+        do X.insert(2);
+        do X.insert(3);
+        do X.insert(4);
+        do X.insert(5);
+
+        do X.print();
+
+        do X.delete(3);
+        do Output.println();
+        
+        do X.print();
+
+        return;
+    }
+}

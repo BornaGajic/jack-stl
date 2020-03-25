@@ -2,6 +2,17 @@ class Main
 {
     function void main ()
     {
+        var Vector A, B, C;
+        let A = Vector.new(1, 2, 3);
+        let B = Vector.new(3, 4, 5);
+
+        do Output.printInt(Vector.scalarProduct(A, B));
+        do Output.println();
+        
+        let C = Vector.vecProduct(A, B);
+
+        do Output.printInt(Vector.norm(C));
+
         return;
     }
 }

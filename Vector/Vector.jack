@@ -1,4 +1,75 @@
 class Vector
 {
-    
+    field int a, b, c;
+
+    constructor Vector new (int x, int y, int z)
+    {
+        let a = x;
+        let b = y;
+        let c = z;
+        return this;
+    }
+
+    method int get_a ()
+    {
+        return a;
+    }
+
+    method int get_b ()
+    {
+        return b;
+    }
+
+    method int get_c ()
+    {
+        return c;
+    }
+
+    function Vector vecProduct (Vector A, Vector B)
+    {
+        var Vector C;
+        var int i, j, k;
+
+        let i = (A.get_b() * B.get_c()) - (A.get_c() * B.get_b());
+        let j = (A.get_a() * B.get_c()) - (A.get_c() * B.get_a());
+        let k = (A.get_a() * B.get_b()) - (A.get_b() * B.get_a());
+
+        let C = Vector.new(i, -j, k);
+
+        return C;
+    }
+
+    function int scalarProduct (Vector A, Vector B)
+    {
+        var int res;
+        let res = (A.get_a() * B.get_a()) + (A.get_b() * B.get_b()) + (A.get_c() * B.get_c());
+
+        return res;
+    }
+
+    function Vector add (Vector A, Vector B)
+    {
+        var Vector C;
+        let C = Vector.new(A.get_a() + B.get_a(), A.get_b() + B.get_b(), A.get_c() + B.get_c());
+
+        return C;
+    }
+
+    function Vector sub (Vector A, Vector B)
+    {
+        var Vector C;
+        let C = Vector.new(A.get_a() - B.get_a(), A.get_b() - B.get_b(), A.get_c() - B.get_c());
+
+        return C;
+    }
+
+    // l1 norm
+    function int norm (Vector A)
+    {
+        var int res;
+
+        let res = Math.abs(A.get_a()) + Math.abs(A.get_b()) + Math.abs(A.get_c());
+
+        return res;
+    }
 }

@@ -1,0 +1,176 @@
+class Set
+{
+    field int capacity, size;
+    field Array arr;
+
+    constructor Set new ()
+    {
+        let capacity = 1;
+        let size = 0;
+        let arr = Array.new(1);
+
+        return this;
+    }
+
+    method void insert (int element)
+    {
+        var Array temp;
+        var int i;
+        
+        if (size < capacity)
+        {
+            let arr[size] = element;
+            let size = size + 1;
+        }
+        else
+        {
+            let temp = Array.new(size);
+
+            let i = 0;
+            while (i < size)
+            {
+                let temp[i] = arr[i];
+                let i = i + 1;
+            }
+
+            do arr.dispose();
+            let arr = Array.new(capacity * 2);
+
+            let i = 0;
+            while (i < size)
+            {
+                let arr[i] = temp[i];
+                let i = i + 1;
+            }
+
+            let arr[size] = element;
+            let size = size + 1;
+            let capacity = capacity * 2;
+
+            do temp.dispose();
+        }
+
+        return;
+    }
+
+    method bool exists (int element)
+    {
+        var int i;
+
+        let i = 0;
+        while (i < size)
+        {
+            if (arr[i] = element)
+            {
+                return true;
+            }
+
+            let i = i + 1;
+        }
+
+        return false;
+    }
+
+    method void delete (int element)
+    {
+        var int i, j;
+        var Array temp;
+
+        if (size = 0)
+        {
+            do Output.printString("Set is empty!");
+            return;
+        }
+
+        if (exists(element) = true)
+        {    
+            if (size = 1)
+            {
+                do arr.dispose();
+                let arr = Array.new(1);
+                
+                let capacity = 1;
+                let size = 0;
+
+                return;
+            }
+
+            let temp = Array.new(size - 1);
+
+            let i = 0;
+            let j = 0;
+            while (i < size)
+            {
+                if (~(arr[i] = element))
+                {
+                    let temp[j] = arr[i];
+
+                    let j = j + 1;
+                }                 
+                else
+                { }
+
+                let i = i + 1;
+            }
+
+            let size = size - 1;
+
+            do arr.dispose();
+            
+            if ((size - (2 * (size / 2))) = 0) // size % 2 == 0
+            {
+                let arr = Array.new(capacity / 2);
+                let capacity = capacity / 2;
+            }
+            else
+            {
+                let arr = Array.new(capacity);
+            }
+
+            let i = 0;
+            while (i < size)
+            {
+                let arr[i] = temp[i];
+
+                let i = i + 1;
+            }
+
+            do temp.dispose();
+        }
+        else
+        {
+            do Output.printString("Element doesn't exist!");
+        }
+
+        return;
+    }
+
+    method int get_size ()
+    {
+        return size;
+    }
+
+    method void print ()
+    {
+        var int i;
+
+        if (size = 0)
+        {
+            do Output.printString("Set is empty!");
+
+            return;
+        }
+
+        let i = 0;
+        while (i < size)
+        {
+            do Output.printInt(arr[i]);
+            do Output.printString(" ");
+
+            let i = i + 1;
+        }
+
+        do Output.println();
+        return;
+    }
+}
