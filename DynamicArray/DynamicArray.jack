@@ -136,6 +136,31 @@ class DynamicArray
         return;
     }
 
+    method void clear ()
+    {
+        do arr.dispose();
+        let capacity = 1;
+        let size = 0;
+        let arr = Array.new(capacity);
+
+        return;
+    }
+
+    method void print ()
+    {
+        var int i;
+        let i = 0;
+
+        while (i < size)
+        {
+            do Output.printInt(arr[i]);
+
+            let i = i + 1;
+        }
+        
+        return;
+    }
+
     method void dispose ()
     {
         do arr.dispose();

@@ -2,6 +2,25 @@ class Main
 {
     function void main ()
     {
+        var Matrix A;
+        let A = Matrix.new(3, 3);
+
+        do A.build_matrix();
+
+        do Output.printString("Determinant: ");
+        do Output.printInt(Matrix.determinant(A));
+        do Output.println();
+
+        do Matrix.print(A);
+        do Output.println();
+
+        do Matrix.transponse(A);
+
+        do Matrix.print(A);
+        do Output.println();
+
+        do A.dispose();
+
         return;
     }
 }

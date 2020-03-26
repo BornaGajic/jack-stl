@@ -3,15 +3,21 @@ class Main
     function void main ()
     {
         var Vector A, B, C;
-        let A = Vector.new(1, 2, 3);
-        let B = Vector.new(3, 4, 5);
+        let A = Vector.new(3, true);
+        let B = Vector.new(3, true);
 
-        do Output.printInt(Vector.scalarProduct(A, B));
+        do Output.printString("Scalar product: ");
+        do Output.printInt(A.scalarProduct(B));
         do Output.println();
         
-        let C = Vector.vecProduct(A, B);
+        let C = A.crossProduct(B);
 
-        do Output.printInt(Vector.norm(C));
+        do Output.printString("L1 norm: ");
+        do Output.printInt(C.norm());
+
+        do A.dispose();
+        do B.dispose();
+        do C.dispose();
 
         return;
     }

@@ -389,6 +389,21 @@ pop temp 0
 label IF_END1
 push constant 0
 return
+function Set.clear 0
+push argument 0
+pop pointer 0
+push this 2
+call Array.dispose 1
+pop temp 0
+push constant 1
+call Array.new 1
+pop this 2
+push constant 1
+pop this 0
+push constant 0
+pop this 1
+push constant 0
+return
 function Set.get_size 0
 push argument 0
 pop pointer 0
@@ -464,6 +479,17 @@ pop local 0
 goto WHILE_EXP0
 label WHILE_END0
 call Output.println 0
+pop temp 0
+push constant 0
+return
+function Set.dispose 0
+push argument 0
+pop pointer 0
+push this 2
+call Array.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return

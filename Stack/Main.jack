@@ -20,6 +20,7 @@ class Main
         while (i < 5)
         {
             do Output.printInt(s.peek());
+            do Output.printString(" ");
             do s.pop();
 
             let i = i + 1;

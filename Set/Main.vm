@@ -33,5 +33,8 @@ pop temp 0
 push local 0
 call Set.print 1
 pop temp 0
+push local 0
+call Set.dispose 1
+pop temp 0
 push constant 0
 return

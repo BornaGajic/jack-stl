@@ -2,37 +2,21 @@ class Main
 {
     function void main()
     {
-        var int i;
         var DynamicArray vector;
         let vector = DynamicArray.new();
-        let i = 0;
 
         do vector.push_back(1);
         do vector.push_back(2);
         do vector.push_back(3);
         do vector.push_back(4);
         do vector.push_back(5);
-        do vector.push_back(6);
-        do vector.push_back(7);
-        do vector.push_back(8);
-        do vector.push_back(9);
-        do vector.push_back(10);
 
-        while (i < 10)
-        {
-            do Output.printInt(vector.get(i));
-            do Output.printString(" ");
-            let i = i + 1;
-        }
+        do vector.print();
 
-        do vector.resize(15);
-        let i = 0;
-        while (i < 15)
-        {
-            do Output.printInt(vector.get(i));
-            do Output.println();
-            let i = i + 1;
-        }
+        do vector.resize(3);
+        do Output.println();
+
+        do vector.print();
 
         do vector.dispose();
 

@@ -191,6 +191,24 @@ push this 1
 push constant 1
 add
 return
+function Stack.clear 0
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push pointer 0
+call Stack.size 1
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push pointer 0
+call Stack.pop 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
 function Stack.dispose 0
 push argument 0
 pop pointer 0

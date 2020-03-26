@@ -1,4 +1,406 @@
 class Matrix
 {
+    field int n, m;
+    field Array A;
     
+    constructor Matrix new (int N, int M)
+    {
+        var int i;
+
+        let i = 0;
+        let A = Array.new(N);
+
+        let n = N;
+        let m = M;
+        
+        while (i < m)
+        {
+            let A[i] = Array.new(m);
+
+            let i = i + 1;
+        }
+
+        return this;
+    }
+
+    function int pow (int element, int power)
+    {
+        var int i, prod;
+
+        let i = 0;
+        let prod = 1;
+        while (i < power)
+        {
+            let prod = prod * element; 
+            let i = i + 1;
+        }
+
+        return prod;
+    }
+
+    method int get_n ()
+    {
+        return n;
+    }
+
+    method int get_m ()
+    {
+        return m;
+    }
+    
+    method int get_element (int i, int j)
+    {
+        var Array temp;
+        let temp = A[i];
+        
+        return temp[j];
+    }
+
+    method void set_element (int i, int j, int element)
+    {
+        var Array temp;
+        let temp = A[i];
+        let temp[j] = element;
+        return;
+    }
+
+    method void build_matrix ()
+    {
+        var int i, j;
+
+        let i = 0;
+        while (i < n)
+        {
+            let j = 0;
+            while (j < m)
+            {
+                do set_element(i, j, Keyboard.readInt("Build matrix: "));
+
+                let j = j + 1;
+            }
+
+            let i = i + 1;
+        }
+
+        do Output.println();
+
+        return;
+    }
+
+    method Matrix add (Matrix B)
+    {
+        var int i, j;
+        var Matrix C;
+        
+        if ((n = B.get_n()) & (m = B.get_m()))
+        {
+            let C = Matrix.new(n, m);
+            
+            let i = 0;
+            while (i < n)
+            {
+                let j = 0;
+                while (j < m)
+                {
+                    do C.set_element(i, j, get_element(i, j) + B.get_element(i, j));
+                    let j = j + 1;
+                }
+
+                let i = i + 1;
+            }
+        }
+        else
+        {
+            do Output.printString("Dimensions must be the same!");
+            do Output.println();
+            return this;
+        }
+
+        return C;
+    }
+
+    method Matrix sub ()
+    {
+        var int i, j;
+        var Matrix C;
+        
+        if ((n = B.get_n()) & (m = B.get_m()))
+        {
+            let C = Matrix.new(n, m);
+            
+            let i = 0;
+            while (i < n)
+            {
+                let j = 0;
+                while (j < m)
+                {
+                    do C.set_element(i, j, get_element(i, j) - B.get_element(i, j));
+                    let j = j + 1;
+                }
+
+                let i = i + 1;
+            }
+        }
+        else
+        {
+            do Output.printString("Dimensions must be the same!");
+            do Output.println();
+            return this;
+        }
+
+        return C;  
+    }
+
+    // Product of matrices
+    method Matrix prodMat (Matrix B)
+    {
+        var Matrix C;
+        var int i, j, k, sum;
+
+        if (m = B.get_m())
+        {
+            let i = 0;
+            let C = Matrix.new(n, B.get_m());
+
+            while (i < n)
+            {
+                let j = 0;
+                let k = 0;
+                while (j < B.get_m())
+                {
+                    let sum = 0;
+                    while (k < m)
+                    {
+                        let sum = sum + (get_element(i, k) * B.get_element(k, j));
+                       
+                        let k = k + 1;
+                    }
+
+                    do C.set_element(i, j, sum);
+
+                    let j = j + 1;
+                }
+
+                let i = i + 1;
+            }
+        }
+        else
+        {
+            do Output.printString("Matrices A and B must be linked! (n x a | a x m)");
+            do Output.println();
+            return this; 
+        }
+
+        return C;
+    }
+
+    // Product of matrix and vector
+    method Vector vecProd (Vector X)
+    {
+        var Vector A;
+        var int i, j, sum;
+        
+        if (m = X.get_dim())
+        {
+            let A = Vector.new(n, false);
+            
+            let i = 0;
+            while (i < n)
+            {
+                let sum = 0;
+                let j = 0;
+                while (j < m)
+                {
+                    let sum = sum + (get_element(i, j) * X.get(j));
+
+                    let j = j + 1;
+                }
+
+                do A.set(i, sum);
+
+                let i = i + 1;
+            }
+        }
+
+        return A;
+    }
+
+    // sub matrix with avoided row x and column y
+    method Matrix subMatrix (int x, int y)
+    {
+        var Matrix Y;
+        var int l, k, i, j;
+        
+        let Y = Matrix.new(n - 1, m - 1);
+        
+        let l = 0;
+        let i = 0;
+        while (l < n)
+        {
+            if (~(l = x))
+            {
+                let k = 0;
+                let j = 0;
+                while (k < m)
+                {
+                    if (~(k = y))
+                    {
+                        do Y.set_element(i, j, get_element(l, k));
+                        
+                        let j = j + 1;
+                    }
+
+                    let k = k + 1;
+                }
+
+                let i = i + 1;
+            }
+            
+            let l = l + 1;
+        }
+
+        return Y;
+    }
+
+    // Laplace expansion at 1. column
+    function int determinant (Matrix X)
+    {
+        var int i, result, sum, plus_minus;
+        var Matrix temp;
+
+        if (X.get_n() = X.get_m())
+        {
+            if (X.get_n() = 2)
+            {
+                return (X.get_element(0, 0) * X.get_element(1, 1)) - (X.get_element(0, 1) * X.get_element(1, 0));
+            }
+
+            let i = 0;
+            let result = 0;
+            let plus_minus = 1;
+            while (i < X.get_n())
+            {
+                let sum = plus_minus * X.get_element(i, 0) * Matrix.determinant(X.subMatrix(i, 0));
+
+                let plus_minus = plus_minus * (-1);
+
+                let result = result + sum;
+
+                let sum = 0;
+
+                let i = i + 1;
+            }
+        }
+        else
+        {
+            do Output.printString("number of columns and rows must be the same!");
+            do Output.println();
+            return 0; 
+        }
+
+        return result;
+    }
+
+    function int trace (Matrix B)
+    {
+        var int i, j, sum;
+
+        if (B.get_m() = B.get_n())
+        {
+            let i = 0;
+            let j = 0;
+            let sum = 0;
+
+            while (i < B.get_n())
+            {
+                let sum = sum + B.get_element(i, j);
+
+                let j = j + 1;
+                let i = i + 1;
+            }
+        }
+        else
+        {
+            do Output.printString("Dimensions must be the same!");
+            do Output.println();
+            return 0; 
+        }
+
+        return sum;
+    }
+
+    function void transponse (Matrix X)
+    {
+        var int i, j, temp;
+
+        if (~(X.get_n() = X.get_m()))
+        {
+            do Output.printString("n and m are not the same");
+
+            return;
+        }
+
+        let i = 0;
+        while (i < X.get_n())
+        {
+            let j = 0;
+            while(j < i)
+            {
+                let temp = X.get_element(i, j);
+                do X.set_element(i, j, X.get_element(j, i));
+                do X.set_element(j, i, temp);
+
+                let j = j + 1;
+            }
+
+            let i = i + 1;
+        }
+
+        return;
+    }
+
+    function void print (Matrix X)
+    {
+        var int i, j;
+
+        let i = 0;
+        while (i < X.get_n())
+        {
+            let j = 0;
+            while(j < X.get_m())
+            {
+                do Output.printInt(X.get_element(i, j));
+                do Output.printString(" ");
+            
+                let j = j + 1;
+            }
+
+            do Output.println();
+
+            let i = i + 1;
+        }
+
+        return;  
+    }
+
+    method void dispose ()
+    {
+        var int i;
+        var Array temp;
+
+        let i = 0;
+        while (i < n)
+        {
+            let temp = A[i];
+            do temp.dispose();
+
+            let i = i + 1;
+        }
+
+        do A.dispose();
+
+        do Memory.deAlloc(this);
+
+        return;
+    }
 }

@@ -313,6 +313,47 @@ label IF_FALSE1
 label IF_END0
 push constant 0
 return
+function DynamicArray.clear 0
+push argument 0
+pop pointer 0
+push this 2
+call Array.dispose 1
+pop temp 0
+push constant 1
+pop this 1
+push constant 0
+pop this 0
+push this 1
+call Array.new 1
+pop this 2
+push constant 0
+return
+function DynamicArray.print 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 0
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 2
+add
+pop pointer 1
+push that 0
+call Output.printInt 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
 function DynamicArray.dispose 0
 push argument 0
 pop pointer 0

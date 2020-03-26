@@ -62,6 +62,17 @@ class Queue
         return size;
     }
 
+    method void clear ()
+    {
+        do arr.dispose();
+        let size = 0;
+        let front = 0;
+        let top = 0;
+        let arr = Array.new(capacity);
+
+        return;
+    }
+
     method void dispose ()
     {
         do arr.dispose();

@@ -145,6 +145,16 @@ class Set
         return;
     }
 
+    method void clear ()
+    {
+        do arr.dispose();
+        let arr = Array.new(1);
+        let capacity = 1;
+        let size = 0;
+
+        return;
+    }
+
     method int get_size ()
     {
         return size;
@@ -171,6 +181,14 @@ class Set
         }
 
         do Output.println();
+        return;
+    }
+
+    method void dispose ()
+    {
+        do arr.dispose();
+        do Memory.deAlloc(this);
+
         return;
     }
 }

@@ -56,6 +56,16 @@ class Stack
         return top + 1;
     }
 
+    method void clear ()
+    {
+        while (~(size() = 0))
+        {
+            do pop();
+        }
+
+        return;
+    }
+
     method void dispose ()
     {
         do arr.dispose();

@@ -18,6 +18,8 @@ class Main
         
         do X.print();
 
+        do X.dispose();
+
         return;
     }
 }
