@@ -16,7 +16,7 @@ Implementation of well known data structures (reference: STL)
 
 **Note:** all classes above have a method named *size* which returns number of elements and *clear*. 
 
-- **Vector** &#8594; vector (mathematics). Methods: *vecProduct*, *scalarProduct*, *add*, *sub* and *norm*.
+- **Vector** &#8594; vector (mathematics). Methods: *crossProduct*, *scalarProduct*, *add*, *sub* and *norm*.
 
 - **Matrix** &#8594; matrix (mathematics). Methods: *add*, *sub*, *trace*, *prodMat*, *determinant*, *prodVec* and *transponse*.
 
