@@ -1,4 +1,121 @@
 class Hashtable
 {
-    
+    field Array A;
+    field int capacity;
+
+    constructor Hashtable new (int cap)
+    {
+        var int i;
+
+        let capacity = cap;
+        let A = Array.new(capacity);
+        
+        let i = 0;
+        while (i < capacity)
+        {
+            let A[i] = List.new();
+
+            let i = i + 1;
+        }
+
+        return this;
+    }
+
+    method int hash_function (int key)
+    {
+        var int x;
+
+        let x = key - ((key/capacity) * capacity);
+
+        return x;
+    }
+
+    method Node get (int element, int key)
+    {
+        var int i, k;
+        var Node iter;
+        var List l;
+
+        let k = hash_function(key);
+        let l = A[k];
+
+        let iter = l.back();
+        while (~(iter = l.front()))
+        {
+            if (element = iter.get_element())
+            {
+                return iter;
+            }
+
+            let iter = iter.get_next();
+        }
+
+        do l.push_front(element, key);
+
+        return l.front();
+    }
+
+    method Node set (int element, int newElement, int key)
+    {
+        var int i, k;
+        var Node iter, empty;
+        var List l;
+
+        let k = hash_function(key);
+        let l = A[k];
+
+        let iter = l.back();
+        while (~(iter = l.front()))
+        {
+            if (element = iter.get_element())
+            {
+                do iter.set_element(newElement);
+                return iter;
+            }
+
+            let iter = iter.get_next();
+        }
+
+        do Output.printString("No such element");
+
+        return empty; 
+    }
+
+    method void dispose ()
+    {
+        var int i;
+        var List l;
+
+        let i = 0;
+        while (i < capacity)
+        {
+            let l = A[i];
+            do l.dispose();
+
+            let i = i + 1;
+        }
+
+        do A.dispose();
+
+        do Memory.deAlloc(this);
+
+        return;
+    }
+
+    method void print ()
+    {
+        var int i;
+        var List l;
+
+        let i = 0;
+        while (i < capacity)
+        {
+            let l = A[i];
+            do l.print();
+            do Output.println();
+            let i = i + 1;
+        }
+
+        return;
+    }
 }

@@ -175,6 +175,13 @@ class List
     {
         var Node iter, last;
 
+        if (size = 0)
+        {
+            do Memory.deAlloc(this);
+
+            return;
+        }
+
         let iter = head.get_next();
         let last = head;
 

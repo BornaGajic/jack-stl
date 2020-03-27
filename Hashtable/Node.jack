@@ -1,0 +1,56 @@
+class Node
+{
+    field int element, key;
+    field Node next, prev;
+
+    constructor Node new (int elem, int k)
+    {
+        let element = elem;
+        let key = k;
+        return this;
+    }
+
+    method int get_element ()
+    {
+        return element;
+    }
+
+    method int get_key ()
+    {
+        return key;
+    }
+
+    method Node get_next ()
+    {
+        return next;
+    }
+
+    method Node get_prev ()
+    {
+        return prev;
+    }
+
+    method void set_element (int elem)
+    {
+        let element = elem;
+        return;
+    }
+
+    method void set_next (Node x)
+    {
+        let next = x;
+        return;
+    }
+    
+    method void set_prev (Node x)
+    {
+        let prev = x;
+        return;
+    }
+
+    method void dispose ()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+}

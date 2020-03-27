@@ -10,7 +10,8 @@ function List.push_back 2
 push argument 0
 pop pointer 0
 push argument 1
-call Node.new 1
+push argument 2
+call Node.new 2
 pop local 0
 push this 2
 push constant 0
@@ -71,7 +72,8 @@ function List.push_front 2
 push argument 0
 pop pointer 0
 push argument 1
-call Node.new 1
+push argument 2
+call Node.new 2
 pop local 0
 push this 2
 push constant 0
@@ -124,56 +126,15 @@ add
 pop this 2
 push constant 0
 return
-function List.insert 4
+function List.back 0
 push argument 0
 pop pointer 0
-push constant 0
-pop local 3
 push this 0
-pop local 0
-label WHILE_EXP0
-push local 3
-push argument 2
-lt
-not
-if-goto WHILE_END0
-push local 0
-call Node.get_next 1
-pop local 0
-push local 3
-push constant 1
-add
-pop local 3
-goto WHILE_EXP0
-label WHILE_END0
-push argument 1
-call Node.new 1
-pop local 1
-push local 1
-push local 0
-call Node.get_next 1
-call Node.set_next 2
-pop temp 0
-push local 1
-push local 0
-call Node.set_prev 2
-pop temp 0
-push local 0
-call Node.get_next 1
-pop local 2
-push local 2
-push local 1
-call Node.set_prev 2
-pop temp 0
-push local 0
-push local 1
-call Node.set_next 2
-pop temp 0
-push this 2
-push constant 1
-add
-pop this 2
-push constant 0
+return
+function List.front 0
+push argument 0
+pop pointer 0
+push this 1
 return
 function List.get_tail 0
 push argument 0
@@ -232,67 +193,6 @@ push local 0
 call Node.get_element 1
 call Output.printInt 1
 pop temp 0
-push constant 0
-return
-function List.pop_head 1
-push argument 0
-pop pointer 0
-push this 2
-push constant 1
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 0
-call Node.dispose 1
-pop temp 0
-push this 2
-push constant 1
-sub
-pop this 2
-push constant 0
-return
-label IF_FALSE0
-push this 1
-push this 0
-call Node.get_next 1
-call Node.set_next 2
-pop temp 0
-push this 0
-call Node.get_next 1
-pop local 0
-push local 0
-push this 1
-call Node.set_prev 2
-pop temp 0
-push this 0
-call Node.dispose 1
-pop temp 0
-push local 0
-pop this 0
-push this 2
-push constant 1
-sub
-pop this 2
-push constant 0
-return
-function List.clear 1
-push argument 0
-pop pointer 0
-push constant 0
-pop local 0
-label WHILE_EXP0
-push local 0
-push this 2
-eq
-not
-not
-if-goto WHILE_END0
-push pointer 0
-call List.pop_head 1
-pop temp 0
-goto WHILE_EXP0
-label WHILE_END0
 push constant 0
 return
 function List.dispose 2

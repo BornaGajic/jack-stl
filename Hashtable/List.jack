@@ -9,10 +9,10 @@ class List
         return this;
     }
 
-    method void push_back (int element)
+    method void push_back (int element, int key)
     {
         var Node newNode, temp;
-        let newNode = Node.new(element);
+        let newNode = Node.new(element, key);
 
         if (size = 0)
         {
@@ -39,10 +39,10 @@ class List
         return;
     }
 
-    method void push_front (int element)
+    method void push_front (int element, int key)
     {
         var Node newNode, temp;
-        let newNode = Node.new(element);
+        let newNode = Node.new(element, key);
 
         if (size = 0)
         {
@@ -68,56 +68,14 @@ class List
         return;
     }
 
-    method void pop_head ()
+    method Node back ()
     {
-        var Node temp;
-
-        if (size = 1)
-        {
-            do head.dispose();
-            let size = size - 1;
-            
-            return;
-        }
-
-        do tail.set_next(head.get_next());
-        let temp = head.get_next();
-        do temp.set_prev(tail);
-        do head.dispose();
-        let head = temp;
-
-        let size = size - 1;
-
-        return;
+        return head;
     }
 
-    // inserts element after x
-    method void insert (int element, int x)
+    method Node front ()
     {
-        var Node iter, newNode, temp;
-        var int i;
-
-        let i = 0;
-        let iter = head;
-        while (i < x)
-        {
-            let iter = iter.get_next();
-            let i = i + 1;
-        }
-
-        let newNode = Node.new(element);
-
-        do newNode.set_next(iter.get_next());
-        do newNode.set_prev(iter);
-
-        let temp = iter.get_next();
-        do temp.set_prev(newNode);
-        
-        do iter.set_next(newNode);
-
-        let size = size + 1;
-
-        return;
+        return tail;
     }
 
     method int get_tail ()
@@ -128,16 +86,6 @@ class List
     method int get_head ()
     {
         return head.get_element();
-    }
-
-    method Node back ()
-    {
-        return head;
-    }
-
-    method Node front ()
-    {
-        return tail;
     }
 
     method int get_size ()

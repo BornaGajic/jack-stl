@@ -2,6 +2,20 @@ class Main
 {
     function void main ()
     {
+        var Node x;
+        var Hashtable h;
+        let h = Hashtable.new(5);
+
+        let x = h.get(3, 123);
+        let x = h.get(4, 2);
+        let x = h.get(5, 4152);
+        let x = h.get(100, 5);
+        let x = h.get(11, 8);
+        
+        do h.print();
+
+        do h.dispose();
+
         return;
     }
 }
